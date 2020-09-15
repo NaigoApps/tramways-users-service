@@ -2,17 +2,8 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>users-service</artifactId>
+  <artifactId>it.tramways.user.users-service</artifactId>
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>openapi-generator-maven-plugin</artifactId>
-          <groupId>org.openapitools</groupId>
-          <version>4.2.3</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
       <plugin>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -22,13 +13,29 @@
   </build>
 
   <dependencies>
-
     <dependency>
-      <artifactId>api</artifactId>
+      <artifactId>commons</artifactId>
       <groupId>it.tramways</groupId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
-
+    <dependency>
+      <artifactId>users-api</artifactId>
+      <groupId>it.tramways</groupId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.auth0</groupId>
+      <artifactId>java-jwt</artifactId>
+      <version>3.8.2</version>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-data-rest</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
     <dependency>
       <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
       <groupId>org.springframework.cloud</groupId>
@@ -66,45 +73,14 @@
   <description>Demo project for Spring Boot</description>
   <groupId>it.tramways</groupId>
   <modelVersion>4.0.0</modelVersion>
-  <name>users-service</name>
+  <name>it.tramways.user.users-service</name>
 
   <parent>
     <artifactId>spring-boot-starter-parent</artifactId>
     <groupId>org.springframework.boot</groupId>
     <relativePath/>
-    <version>2.3.3.RELEASE</version> <!-- lookup parent from repository -->
+    <version>2.3.3.RELEASE</version>
   </parent>
-
-  <profiles>
-    <profile>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>openapi-generator-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <configuration>
-                  <configOptions>
-                    <apiPackage>tramways.inbound.api</apiPackage>
-                    <dateLibrary>joda</dateLibrary>
-                    <modelPackage>tramways.inbound.model</modelPackage>
-                    <sourceFolder>src/main/java/api/generated</sourceFolder>
-                  </configOptions>
-                  <generatorName>spring</generatorName>
-                  <inputSpec>${project.basedir}/src/main/resources/api/api.yaml</inputSpec>
-                </configuration>
-                <goals>
-                  <goal>generate</goal>
-                </goals>
-              </execution>
-            </executions>
-            <groupId>org.openapitools</groupId>
-          </plugin>
-        </plugins>
-      </build>
-      <id>generate-api</id>
-    </profile>
-  </profiles>
 
   <properties>
     <java.version>11</java.version>
