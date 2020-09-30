@@ -14,7 +14,7 @@ spring:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/tramways_users
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/tramways_users?useLegacyDatetimeCode=false&serverTimezone=Europe/Rome
     username: tramways
     password: tramways
 

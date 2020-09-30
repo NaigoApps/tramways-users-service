@@ -1,6 +1,6 @@
 package it.tramways.users.api;
 
-import it.tramways.core.model.UserRoles;
+import it.tramways.security.UserRoles;
 import it.tramways.users.api.model.BooleanWrapper;
 import it.tramways.users.api.model.ChangePasswordRequest;
 import it.tramways.users.api.model.LoginRequest;

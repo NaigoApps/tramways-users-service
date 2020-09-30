@@ -79,14 +79,6 @@ public class User extends BaseEntity {
 		this.enabled = enabled;
 	}
 
-	private static MessageDigest getAlgorithm() {
-		try {
-			return MessageDigest.getInstance("SHA-256");
-		} catch (NoSuchAlgorithmException e) {
-			throw new RuntimeException("Algorithm not found");
-		}
-	}
-
 	public void assignRoles(Set<Role> roles) {
 		this.roles = new HashSet<>(roles);
 	}

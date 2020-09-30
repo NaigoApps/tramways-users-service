@@ -1,10 +1,9 @@
-package it.tramways.users;
+package it.tramways.users.security;
 
-import it.tramways.core.model.TramwaysUserDetails;
+import it.tramways.security.TramwaysUserDetails;
 import it.tramways.users.persistable.User;
 import it.tramways.users.persistable.UsersRepository;
 import java.util.stream.Collectors;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,11 +12,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class TramwaysUsersDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UsersRepository repository;
+    private final UsersRepository repository;
+
+    public TramwaysUsersDetailsService(
+        UsersRepository repository
+    ) {
+        this.repository = repository;
+    }
 
     @Override
-    public TramwaysUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public TramwaysUserDetails loadUserByUsername(String username) {
         User user = repository.findByUsername(username);
         if (user != null) {
             return convert(user);

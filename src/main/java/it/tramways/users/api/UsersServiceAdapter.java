@@ -1,9 +1,9 @@
 package it.tramways.users.api;
 
-import it.tramways.core.model.TramwaysUserDetails;
+import it.tramways.security.TokenManager;
+import it.tramways.security.TramwaysUserDetails;
 import it.tramways.users.RoleConverter;
-import it.tramways.users.TokenManager;
-import it.tramways.users.TramwaysUsersDetailsService;
+import it.tramways.users.security.TramwaysUsersDetailsService;
 import it.tramways.users.api.model.BooleanWrapper;
 import it.tramways.users.api.model.ChangePasswordRequest;
 import it.tramways.users.api.model.LoginRequest;
@@ -17,12 +17,13 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,27 +32,38 @@ public class UsersServiceAdapter implements UsersApi {
 
     private static final String TOKEN_PREFIX = "Bearer ";
 
-    @Autowired
-    private PasswordEncoder encoder;
+    private final PasswordEncoder encoder;
 
-    @Autowired
-    private UsersRepositoryImpl repository;
+    private final UsersRepositoryImpl repository;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private TramwaysUsersDetailsService usersDetailService;
+    private final TramwaysUsersDetailsService usersDetailService;
 
-    @Autowired
-    private TokenManager tokenManager;
+    private final TokenManager tokenManager;
 
-    @Autowired
-    private UserConverter converter;
+    private final UserConverter converter;
+
+    public UsersServiceAdapter(
+        PasswordEncoder encoder,
+        UsersRepositoryImpl repository,
+        AuthenticationManager authenticationManager,
+        TramwaysUsersDetailsService usersDetailService,
+        TokenManager tokenManager,
+        UserConverter converter
+    ) {
+        this.encoder = encoder;
+        this.repository = repository;
+        this.authenticationManager = authenticationManager;
+        this.usersDetailService = usersDetailService;
+        this.tokenManager = tokenManager;
+        this.converter = converter;
+    }
 
     @Override
     public ResponseEntity<it.tramways.users.api.model.User> createUser(
-        @Valid UserRequest userRequest) {
+        @Valid UserRequest userRequest
+    ) {
         User user = new User();
         user.setUsername(userRequest.getUsername());
         user.assignPassword(userRequest.getPassword(), encoder);
@@ -80,8 +92,8 @@ public class UsersServiceAdapter implements UsersApi {
 
     @Override
     public ResponseEntity<Void> editRoles(String id, @Valid List<UserRole> userRole) {
-        String token = extractToken(null);
-        if (isCurrentUser(id, token)) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (isCurrentUser(id, username)) {
             throw new RuntimeException("Cannot edit current user");
         }
         return editUser(id, user -> user.assignRoles(userRole.stream()
@@ -89,31 +101,36 @@ public class UsersServiceAdapter implements UsersApi {
             .collect(Collectors.toSet())));
     }
 
-    private String extractToken(String auth) {
-        if (auth == null || !auth.startsWith(TOKEN_PREFIX)) {
-            return null;
-        }
-        return auth.substring(TOKEN_PREFIX.length());
-    }
-
     @Override
-    public ResponseEntity<Void> enableUser(String id, @Valid BooleanWrapper booleanWrapper) {
-        return null;
+    public ResponseEntity<Void> enableUser(String id, @Valid BooleanWrapper enabled) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (isCurrentUser(id, username)) {
+            throw new RuntimeException("Cannot edit current user");
+        }
+        return editUser(id, user -> user.setEnabled(enabled.getValue()));
     }
 
     @Override
     public ResponseEntity<it.tramways.users.api.model.User> getUser(String id) {
-        return null;
+        return ResponseEntity.ok(converter.toDto(repository.findByUsername(id)));
     }
 
     @Override
     public ResponseEntity<List<it.tramways.users.api.model.User>> getUsers() {
-        return null;
+        return ResponseEntity.ok(repository.findAll().stream()
+            .map(converter::toDto)
+            .collect(Collectors.toList()));
     }
 
     @Override
     public ResponseEntity<it.tramways.users.api.model.User> logged() {
-        return ResponseEntity.ok(new it.tramways.users.api.model.User());
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (username != null) {
+            User loggedUser = repository.findByUsername(username);
+            return ResponseEntity.ok(converter.toDto(loggedUser));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
     }
 
     @Override
@@ -129,13 +146,15 @@ public class UsersServiceAdapter implements UsersApi {
         StringWrapper body = new StringWrapper();
         body.setValue(token);
         return ResponseEntity.ok()
-            .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+            .header(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + token)
             .body(body);
     }
 
     @Override
-    public ResponseEntity<Void> resetUser(String id, @Valid StringWrapper stringWrapper) {
-        return null;
+    public ResponseEntity<Void> resetUser(String id, @Valid StringWrapper userId) {
+        User target = repository.findByUuid(userId.getValue());
+        target.assignPassword(target.getUsername(), new BCryptPasswordEncoder());
+        return ResponseEntity.ok().build();
     }
 
     private ResponseEntity<Void> editUser(String uuid, Consumer<User> editor) {
@@ -144,8 +163,7 @@ public class UsersServiceAdapter implements UsersApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    private boolean isCurrentUser(String targetUuid, String token) {
-        TramwaysUserDetails user = tokenManager.token2UserDetail(token);
-        return user.getUuid().equals(targetUuid);
+    private boolean isCurrentUser(String targetUuid, String loggedUsername) {
+        return targetUuid.equals(repository.findByUsername(loggedUsername).getUuid());
     }
 }
