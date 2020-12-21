@@ -1,8 +1,8 @@
 package it.tramways.users.api.security;
 
-import it.tramways.security.TramwaysUserDetails;
-import it.tramways.users.core.persistable.User;
-import it.tramways.users.core.persistable.UsersRepository;
+import it.tramways.web.security.TramwaysUserDetails;
+import it.tramways.users.core.User;
+import it.tramways.users.outbound.UsersServiceRepository;
 import java.util.stream.Collectors;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class TramwaysUsersDetailsService implements UserDetailsService {
 
-    private final UsersRepository repository;
+    private final UsersServiceRepository repository;
 
     public TramwaysUsersDetailsService(
-        UsersRepository repository
+        UsersServiceRepository repository
     ) {
         this.repository = repository;
     }

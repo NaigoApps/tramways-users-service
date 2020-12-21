@@ -1,7 +1,7 @@
 package it.tramways.users.api;
 
 import it.tramways.users.api.model.UserRole;
-import it.tramways.users.core.persistable.Role;
+import it.tramways.users.core.Role;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;

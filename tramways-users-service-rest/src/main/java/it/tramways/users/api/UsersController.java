@@ -2,7 +2,7 @@ package it.tramways.users.api;
 
 import it.tramways.commons.api.model.BooleanWrapper;
 import it.tramways.commons.api.model.StringWrapper;
-import it.tramways.security.UserRoles;
+import it.tramways.web.security.UserRoles;
 import it.tramways.users.api.model.ChangePasswordRequest;
 import it.tramways.users.api.model.LoginRequest;
 import it.tramways.users.api.model.User;

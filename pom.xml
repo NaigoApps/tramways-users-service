@@ -6,9 +6,10 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>tramways-users-service-rest-api</module>
+    <module>tramways-users-service-rest</module>
     <module>tramways-users-service-core</module>
     <module>tramways-users-service-application</module>
+    <module>tramways-users-service-jpa</module>
   </modules>
 
   <groupId>it.tramways</groupId>

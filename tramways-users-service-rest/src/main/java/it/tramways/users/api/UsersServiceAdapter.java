@@ -2,16 +2,15 @@ package it.tramways.users.api;
 
 import it.tramways.commons.api.model.BooleanWrapper;
 import it.tramways.commons.api.model.StringWrapper;
-import it.tramways.security.TokenManager;
-import it.tramways.security.TramwaysUserDetails;
+import it.tramways.web.security.TokenManager;
+import it.tramways.web.security.TramwaysUserDetails;
 import it.tramways.users.api.model.ChangePasswordRequest;
 import it.tramways.users.api.model.LoginRequest;
 import it.tramways.users.api.model.UserRequest;
 import it.tramways.users.api.model.UserRole;
 import it.tramways.users.api.security.TramwaysUsersDetailsService;
-import it.tramways.users.core.persistable.User;
-import it.tramways.users.core.persistable.UsersRepository;
-import it.tramways.users.core.persistable.UsersRepositoryCustomImpl;
+import it.tramways.users.core.User;
+import it.tramways.users.outbound.UsersServiceRepository;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Consumer;
@@ -34,7 +33,7 @@ public class UsersServiceAdapter implements UsersApi {
 
     private final PasswordEncoder encoder;
 
-    private final UsersRepository repository;
+    private final UsersServiceRepository repository;
 
     private final AuthenticationManager authenticationManager;
 
@@ -46,7 +45,7 @@ public class UsersServiceAdapter implements UsersApi {
 
     public UsersServiceAdapter(
         PasswordEncoder encoder,
-        UsersRepository repository,
+        UsersServiceRepository repository,
         AuthenticationManager authenticationManager,
         TramwaysUsersDetailsService usersDetailService,
         TokenManager tokenManager,

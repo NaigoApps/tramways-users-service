@@ -1,8 +1,8 @@
 package it.tramways.users.api;
 
-import it.tramways.users.core.persistable.Role;
-import it.tramways.users.core.persistable.User;
-import it.tramways.users.core.persistable.UsersRepository;
+import it.tramways.users.core.Role;
+import it.tramways.users.core.User;
+import it.tramways.users.outbound.UsersServiceRepository;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,12 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class UsersServiceInitializer {
 
-    private final UsersRepository repository;
+    private final UsersServiceRepository repository;
 
     private final PasswordEncoder passwordEncoder;
 
     public UsersServiceInitializer(
-        UsersRepository repository,
+        UsersServiceRepository repository,
         PasswordEncoder passwordEncoder
     ) {
         this.repository = repository;

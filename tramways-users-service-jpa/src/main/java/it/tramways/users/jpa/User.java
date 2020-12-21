@@ -1,6 +1,7 @@
-package it.tramways.users.core.persistable;
+package it.tramways.users.jpa;
 
 import it.tramways.core.model.persistable.BaseEntity;
+import it.tramways.users.core.Role;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashSet;

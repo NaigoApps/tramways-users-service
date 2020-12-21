@@ -1,4 +1,4 @@
-package it.tramways.users.core.persistable;
+package it.tramways.users.core;
 
 public enum Role {
 	ADMIN, EXPERT, CLIENT

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserConverter {
 
-    public User toDto(it.tramways.users.core.persistable.User user){
+    public User toDto(it.tramways.users.core.User user){
         User result = new User();
         result.setUuid(user.getUuid());
         result.setUsername(user.getUsername());

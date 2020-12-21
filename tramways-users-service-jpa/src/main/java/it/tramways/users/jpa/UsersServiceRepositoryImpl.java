@@ -1,6 +1,8 @@
-package it.tramways.users.core.persistable;
+package it.tramways.users.jpa;
 
-import it.tramways.core.model.persistable.BaseEntity_;
+import it.tramways.users.core.Role;
+import it.tramways.users.core.User;
+import it.tramways.users.outbound.UsersServiceRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -10,7 +12,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UsersRepositoryCustomImpl implements UsersRepositoryCustom {
+public class UsersServiceRepositoryImpl implements UsersServiceRepository {
 
     @PersistenceContext
     private EntityManager entityManager;

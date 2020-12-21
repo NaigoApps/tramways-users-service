@@ -1,6 +1,6 @@
 package it.tramways.users.api.security;
 
-import it.tramways.security.JWTRequestFilter;
+import it.tramways.web.security.JWTRequestFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
