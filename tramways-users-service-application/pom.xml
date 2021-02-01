@@ -31,6 +31,21 @@
       <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
       <groupId>org.springframework.cloud</groupId>
     </dependency>
+    <dependency>
+      <groupId>it.tramways</groupId>
+      <artifactId>tramways-users-service-rest</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>it.tramways</groupId>
+      <artifactId>tramways-users-service-core</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>it.tramways</groupId>
+      <artifactId>tramways-users-service-jpa</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <dependencyManagement>

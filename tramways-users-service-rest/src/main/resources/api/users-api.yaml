@@ -37,8 +37,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
   /users/login:
     post:
       summary: 'Logs a user in'
@@ -51,7 +49,11 @@ paths:
               $ref: '#/components/schemas/LoginRequest'
       responses:
         '200':
-          $ref: '#/components/responses/Ok'
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringWrapper'
   /users/logged:
     get:
       summary: 'Gets logged user'
@@ -83,10 +85,6 @@ paths:
                 $ref: '#/components/schemas/User'
         '404':
           description: 'User not found'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorWrapper'
     delete:
       operationId: 'deleteUser'
       summary: 'Deletes a user'
@@ -212,58 +210,22 @@ components:
         newPassword:
           type: string
     User:
-      allOf:
-        - $ref: '#/components/schemas/Resource'
-        - type: object
-          properties:
-            username:
-              type: string
-            roles:
-              type: array
-              items:
-                $ref: '#/components/schemas/UserRole'
-          required: [username, roles]
-    UserRole:
-      type: string
-      enum: [CLIENT, EXPERT, ADMIN]
-    Resource:
       type: object
-      discriminator:
-        propertyName: resourceType
       properties:
         uuid:
           type: string
-        resourceType:
+        username:
           type: string
-    BooleanWrapper:
-      type: object
-      properties:
-        value:
-          type: boolean
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRole'
+    UserRole:
+      type: string
+      enum: [CLIENT, EXPERT, ADMIN]
     StringWrapper:
       type: object
-      properties:
-        value:
-          type: string
-    ErrorWrapper:
+    BooleanWrapper:
       type: object
-      properties:
-        message:
-          type: string
-  responses:
-    Created:
-      description: 'Resource created'
-      headers:
-        Location:
-          schema:
-            type: string
-    Ok:
-      description: 'Request successful'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StringWrapper'
-    Unauthorized:
-      description: 'You are not authorized'
 security:
   - bearerAuth: []

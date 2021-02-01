@@ -1,72 +1,71 @@
 package it.tramways.users.core;
 
-import it.tramways.core.model.DomainEntity;
+import it.tramways.core.DomainEntity;
 import java.util.Collections;
-import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class User extends DomainEntity {
 
-	private String username;
+    private String username;
 
-	private boolean enabled;
+    private Boolean enabled;
 
-	private String password;
+    private String rawPassword;
 
-	private Set<Role> roles;
+    private Set<Role> roles;
 
-	public User() {
-		roles = EnumSet.noneOf(Role.class);
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getPassword() {
+        return rawPassword;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void assignPlainPassword(String plainPassword, PasswordEncoder encoder) {
+        this.rawPassword = encoder.encode(plainPassword);
+    }
 
-	public void assignPassword(String plainPassword, PasswordEncoder encoder) {
-		this.password = encoder.encode(plainPassword);
-	}
+    public void setPassword(String rawPassword) {
+        this.rawPassword = rawPassword;
+    }
 
-	public boolean passwordMatches(String plainPassword, PasswordEncoder encoder) {
-		return encoder.matches(plainPassword, password);
-	}
+    public boolean passwordMatches(String plainPassword, PasswordEncoder encoder) {
+        return encoder.matches(plainPassword, rawPassword);
+    }
 
-	public boolean hasRole(Role r) {
-		return roles.contains(r);
-	}
+    public boolean hasRole(Role r) {
+        return roles.contains(r);
+    }
 
-	public void grantRole(Role r) {
-		roles.add(r);
-	}
+    public void grantRole(Role r) {
+        roles.add(r);
+    }
 
-	public void revokeRole(Role r) {
-		roles.remove(r);
-	}
+    public void revokeRole(Role r) {
+        roles.remove(r);
+    }
 
-	public Set<Role> listRoles() {
-		return Collections.unmodifiableSet(roles);
-	}
+    public Set<Role> getRoles() {
+        return Collections.unmodifiableSet(roles);
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public Boolean isEnabled() {
+        return enabled;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	public void assignRoles(Set<Role> roles) {
-		this.roles = new HashSet<>(roles);
-	}
+    public void setRoles(Set<Role> roles) {
+        this.roles = new HashSet<>(roles);
+    }
 
 }

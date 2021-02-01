@@ -11,8 +11,7 @@ public class UserConverter {
         User result = new User();
         result.setUuid(user.getUuid());
         result.setUsername(user.getUsername());
-        result.setRoles(new ArrayList<>(RoleConverter.toDto(user.listRoles())));
-        result.setResourceType(User.class.getSimpleName());
+        result.setRoles(new ArrayList<>(RoleConverter.toDto(user.getRoles())));
         return result;
     }
 

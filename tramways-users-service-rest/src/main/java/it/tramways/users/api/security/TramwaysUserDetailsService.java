@@ -1,8 +1,8 @@
 package it.tramways.users.api.security;
 
-import it.tramways.web.security.TramwaysUserDetails;
+import it.tramways.users.inbound.UsersService;
+import it.tramways.commons.web.security.TramwaysUserDetails;
 import it.tramways.users.core.User;
-import it.tramways.users.outbound.UsersServiceRepository;
 import java.util.stream.Collectors;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,19 +10,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TramwaysUsersDetailsService implements UserDetailsService {
+public class TramwaysUserDetailsService implements UserDetailsService {
 
-    private final UsersServiceRepository repository;
+    private final UsersService service;
 
-    public TramwaysUsersDetailsService(
-        UsersServiceRepository repository
+    public TramwaysUserDetailsService(
+        UsersService service
     ) {
-        this.repository = repository;
+        this.service = service;
     }
 
     @Override
     public TramwaysUserDetails loadUserByUsername(String username) {
-        User user = repository.findByUsername(username);
+        User user = service.findByUsername(username);
         if (user != null) {
             return convert(user);
         }
@@ -34,7 +34,7 @@ public class TramwaysUsersDetailsService implements UserDetailsService {
             user.getUuid(),
             user.getUsername(),
             user.getPassword(),
-            user.listRoles().stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(
+            user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(
                 Collectors.toSet())
         );
     }
