@@ -5,9 +5,11 @@
  */
 package it.tramways.users.api;
 
+import it.tramways.users.api.model.BooleanWrapper;
 import it.tramways.users.api.model.ChangePasswordRequest;
 import java.util.List;
 import it.tramways.users.api.model.LoginRequest;
+import it.tramways.users.api.model.StringWrapper;
 import it.tramways.users.api.model.User;
 import it.tramways.users.api.model.UserRequest;
 import it.tramways.users.api.model.UserRole;
@@ -27,7 +29,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-07T17:36:39.887971+01:00[Europe/Rome]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-11T22:40:16.400281+01:00[Europe/Rome]")
 @Validated
 @Api(value = "users", description = "the users API")
 public interface UsersApi {
@@ -139,7 +141,7 @@ public interface UsersApi {
      * PUT /users/{id}/enable : Enable or disable a user
      *
      * @param id  (required)
-     * @param body  (optional)
+     * @param booleanWrapper  (optional)
      * @return Ok (status code 200)
      */
     @ApiOperation(value = "Enable or disable a user", nickname = "enableUser", notes = "", authorizations = {
@@ -152,7 +154,7 @@ public interface UsersApi {
         value = "/users/{id}/enable",
         consumes = { "application/json" }
     )
-    default ResponseEntity<Void> enableUser(@ApiParam(value = "",required=true) @PathVariable("id") String id,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) Object body) {
+    default ResponseEntity<Void> enableUser(@ApiParam(value = "",required=true) @PathVariable("id") String id,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) BooleanWrapper booleanWrapper) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -257,19 +259,19 @@ public interface UsersApi {
      * @param loginRequest  (optional)
      * @return Ok (status code 200)
      */
-    @ApiOperation(value = "Logs a user in", nickname = "login", notes = "", response = it.tramways.commons.web.model.wrappers.StringWrapper.class, tags={  })
+    @ApiOperation(value = "Logs a user in", nickname = "login", notes = "", response = StringWrapper.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Ok", response = it.tramways.commons.web.model.wrappers.StringWrapper.class) })
+        @ApiResponse(code = 200, message = "Ok", response = StringWrapper.class) })
     @PostMapping(
         value = "/users/login",
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<it.tramways.commons.web.model.wrappers.StringWrapper> login(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) LoginRequest loginRequest) {
+    default ResponseEntity<StringWrapper> login(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) LoginRequest loginRequest) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "null";
+                    String exampleString = "{ \"value\" : \"value\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -284,7 +286,7 @@ public interface UsersApi {
      * PUT /users/{id}/reset : Reset user&#39;s password
      *
      * @param id  (required)
-     * @param body  (optional)
+     * @param stringWrapper  (optional)
      * @return OK (status code 200)
      */
     @ApiOperation(value = "Reset user's password", nickname = "resetUser", notes = "", authorizations = {
@@ -297,7 +299,7 @@ public interface UsersApi {
         value = "/users/{id}/reset",
         consumes = { "application/json" }
     )
-    default ResponseEntity<Void> resetUser(@ApiParam(value = "",required=true) @PathVariable("id") String id,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) Object body) {
+    default ResponseEntity<Void> resetUser(@ApiParam(value = "",required=true) @PathVariable("id") String id,@ApiParam(value = ""  )  @Valid @RequestBody(required = false) StringWrapper stringWrapper) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

@@ -1,8 +1,11 @@
 package it.tramways.users.api;
 
-import it.tramways.commons.web.model.wrappers.StringWrapper;
+import it.tramways.commons.web.UserRoles;
+import it.tramways.commons.web.security.TokenManager;
+import it.tramways.commons.web.security.TramwaysUserDetails;
 import it.tramways.users.api.model.ChangePasswordRequest;
 import it.tramways.users.api.model.LoginRequest;
+import it.tramways.users.api.model.StringWrapper;
 import it.tramways.users.api.model.User;
 import it.tramways.users.api.model.UserRequest;
 import it.tramways.users.api.model.UserRole;
@@ -11,10 +14,6 @@ import it.tramways.users.inbound.UsersService;
 import it.tramways.users.inbound.commands.ChangePasswordCommand;
 import it.tramways.users.inbound.commands.ChangeRolesCommand;
 import it.tramways.users.inbound.commands.CreateUserCommand;
-import it.tramways.users.inbound.commands.UserCommand;
-import it.tramways.commons.web.security.TokenManager;
-import it.tramways.commons.web.security.TramwaysUserDetails;
-import it.tramways.commons.web.UserRoles;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -135,14 +134,6 @@ public class UsersController implements UsersApi {
         return ResponseEntity.ok()
             .header(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + token)
             .body(body);
-    }
-
-    @Override
-    public ResponseEntity<Void> resetUser(String id, @Valid Object body) {
-        UserCommand command = new UserCommand();
-        command.setUsername(id);
-        service.reset(command);
-        return ResponseEntity.ok().build();
     }
 
 }

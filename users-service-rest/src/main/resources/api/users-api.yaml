@@ -225,7 +225,13 @@ components:
       enum: [CLIENT, EXPERT, ADMIN]
     StringWrapper:
       type: object
+      properties:
+        value:
+          type: string
     BooleanWrapper:
       type: object
+      properties:
+        value:
+          type: boolean
 security:
   - bearerAuth: []

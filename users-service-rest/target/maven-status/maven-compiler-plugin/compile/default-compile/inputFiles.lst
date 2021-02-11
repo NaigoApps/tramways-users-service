@@ -3,6 +3,7 @@
 /home/naigo/git/tramways-microservices/users-service/users-service-rest/src/main/java/it/tramways/users/api/security/TramwaysUserDetailsService.java
 /home/naigo/git/tramways-microservices/users-service/users-service-rest/src/main/java/it/tramways/users/api/UserConverter.java
 /home/naigo/git/tramways-microservices/users-service/users-service-rest/src/main/java/it/tramways/users/api/RoleConverter.java
+/home/naigo/git/tramways-microservices/users-service/users-service-rest/target/generated-sources/openapi/src/main/java/it/tramways/users/api/model/StringWrapper.java
 /home/naigo/git/tramways-microservices/users-service/users-service-rest/src/main/java/it/tramways/users/api/security/UsersServiceWebSecurityConfigurerAdapter.java
 /home/naigo/git/tramways-microservices/users-service/users-service-rest/target/generated-sources/openapi/src/main/java/it/tramways/users/api/model/ChangePasswordRequest.java
 /home/naigo/git/tramways-microservices/users-service/users-service-rest/src/main/java/it/tramways/users/api/UsersController.java
@@ -11,3 +12,4 @@
 /home/naigo/git/tramways-microservices/users-service/users-service-rest/target/generated-sources/openapi/src/main/java/it/tramways/users/api/UsersApi.java
 /home/naigo/git/tramways-microservices/users-service/users-service-rest/target/generated-sources/openapi/src/main/java/it/tramways/users/api/model/UserRole.java
 /home/naigo/git/tramways-microservices/users-service/users-service-rest/target/generated-sources/openapi/src/main/java/it/tramways/users/api/model/LoginRequest.java
+/home/naigo/git/tramways-microservices/users-service/users-service-rest/target/generated-sources/openapi/src/main/java/it/tramways/users/api/model/BooleanWrapper.java

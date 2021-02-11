@@ -54,10 +54,6 @@
               <modelPackage>it.tramways.users.api.model</modelPackage>
               <generatorName>spring</generatorName>
               <inputSpec>${project.basedir}/src/main/resources/api/users-api.yaml</inputSpec>
-              <importMappings>
-                <importMapping>StringWrapper=it.tramways.commons.web.model.wrappers.StringWrapper</importMapping>
-                <importMapping>BooleanWrapper=it.tramways.commons.web.model.wrappers.BooleanWrapper</importMapping>
-              </importMappings>
             </configuration>
             <goals>
               <goal>generate</goal>

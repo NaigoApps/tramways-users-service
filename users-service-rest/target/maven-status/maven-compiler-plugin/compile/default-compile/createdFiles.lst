@@ -9,5 +9,7 @@ it/tramways/users/api/ApiUtil.class
 it/tramways/users/api/UsersApi.class
 it/tramways/users/api/UsersController.class
 it/tramways/users/api/model/User.class
+it/tramways/users/api/model/BooleanWrapper.class
+it/tramways/users/api/model/StringWrapper.class
 it/tramways/users/api/security/UsersServiceWebSecurityConfigurerAdapter.class
 it/tramways/users/api/security/PasswordEncoderConfiguration.class

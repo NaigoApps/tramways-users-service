@@ -1,2 +1,2 @@
-/home/naigo/git/tramways-microservices/users-service/users-service-jpa-core/src/main/java/it/tramways/users/core/UsersRepositoryImpl.java
-/home/naigo/git/tramways-microservices/users-service/users-service-jpa-core/src/main/java/it/tramways/users/core/UsersJpaRepository.java
+/home/naigo/git/tramways-microservices/users-service/users-service-jpa-core/src/main/java/it/tramways/users/jpa/UsersJpaRepository.java
+/home/naigo/git/tramways-microservices/users-service/users-service-jpa-core/src/main/java/it/tramways/users/jpa/UsersRepositoryImpl.java

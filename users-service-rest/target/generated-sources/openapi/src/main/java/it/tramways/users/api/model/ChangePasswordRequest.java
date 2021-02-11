@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * ChangePasswordRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-07T17:36:39.887971+01:00[Europe/Rome]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-11T22:40:16.400281+01:00[Europe/Rome]")
 public class ChangePasswordRequest   {
   @JsonProperty("oldPassword")
   private String oldPassword;
