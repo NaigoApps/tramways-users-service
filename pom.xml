@@ -3,18 +3,26 @@
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <artifactId>users-service</artifactId>
-  <packaging>pom</packaging>
+  <groupId>it.tramways</groupId>
+
+  <modelVersion>4.0.0</modelVersion>
 
   <modules>
-    <module>tramways-users-service-rest</module>
-    <module>tramways-users-service-core</module>
-    <module>tramways-users-service-application</module>
-    <module>tramways-users-service-jpa</module>
+    <module>users-service-application</module>
+    <module>users-service-core-model</module>
+    <module>users-service-core-services</module>
+    <module>users-service-jpa-core</module>
+    <module>users-service-jpa-mappers</module>
+    <module>users-service-jpa-model</module>
+    <module>users-service-rest</module>
   </modules>
-
-  <groupId>it.tramways</groupId>
-  <modelVersion>4.0.0</modelVersion>
   <name>users-service</name>
-  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+
+  <version>1.0.0-SNAPSHOT</version>
 
 </project>

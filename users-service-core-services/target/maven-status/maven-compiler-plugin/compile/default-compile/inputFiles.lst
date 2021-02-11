@@ -1,0 +1,8 @@
+/home/naigo/git/tramways-microservices/users-service/users-service-core-services/src/main/java/it/tramways/users/inbound/commands/UserCommand.java
+/home/naigo/git/tramways-microservices/users-service/users-service-core-services/src/main/java/it/tramways/users/inbound/commands/CreateUserCommand.java
+/home/naigo/git/tramways-microservices/users-service/users-service-core-services/src/main/java/it/tramways/users/inbound/UsersService.java
+/home/naigo/git/tramways-microservices/users-service/users-service-core-services/src/main/java/it/tramways/users/outbound/UsersRepository.java
+/home/naigo/git/tramways-microservices/users-service/users-service-core-services/src/main/java/it/tramways/users/inbound/commands/ChangeRolesCommand.java
+/home/naigo/git/tramways-microservices/users-service/users-service-core-services/src/main/java/it/tramways/users/core/UsersServiceImpl.java
+/home/naigo/git/tramways-microservices/users-service/users-service-core-services/src/main/java/it/tramways/users/inbound/commands/LoginCommand.java
+/home/naigo/git/tramways-microservices/users-service/users-service-core-services/src/main/java/it/tramways/users/inbound/commands/ChangePasswordCommand.java

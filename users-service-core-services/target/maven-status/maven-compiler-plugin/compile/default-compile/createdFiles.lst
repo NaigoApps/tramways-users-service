@@ -1,0 +1,8 @@
+it/tramways/users/inbound/commands/LoginCommand.class
+it/tramways/users/core/UsersServiceImpl.class
+it/tramways/users/inbound/UsersService.class
+it/tramways/users/inbound/commands/CreateUserCommand.class
+it/tramways/users/inbound/commands/ChangePasswordCommand.class
+it/tramways/users/outbound/UsersRepository.class
+it/tramways/users/inbound/commands/ChangeRolesCommand.class
+it/tramways/users/inbound/commands/UserCommand.class
