@@ -4,7 +4,7 @@ info:
   description: Tramways Users API
   version: 1.0.0
 servers:
-  - url: http://localhost:8762/tramways/rest/users-service
+  - url: http://localhost:8762/tramways/rest/users
 
 paths:
   /users:
