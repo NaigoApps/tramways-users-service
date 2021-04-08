@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-11T22:40:16.400281+01:00[Europe/Rome]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-11T22:50:45.043892+01:00[Europe/Rome]")
 @Validated
 @Api(value = "users", description = "the users API")
 public interface UsersApi {
@@ -231,7 +231,7 @@ public interface UsersApi {
     @ApiOperation(value = "Gets logged user", nickname = "logged", notes = "", response = User.class, authorizations = {
         
         @Authorization(value = "bearerAuth")
-         }, tags={  })
+         }, tags={ "users", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Ok", response = User.class) })
     @GetMapping(
@@ -259,7 +259,7 @@ public interface UsersApi {
      * @param loginRequest  (optional)
      * @return Ok (status code 200)
      */
-    @ApiOperation(value = "Logs a user in", nickname = "login", notes = "", response = StringWrapper.class, tags={  })
+    @ApiOperation(value = "Logs a user in", nickname = "login", notes = "", response = StringWrapper.class, tags={ "users", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Ok", response = StringWrapper.class) })
     @PostMapping(

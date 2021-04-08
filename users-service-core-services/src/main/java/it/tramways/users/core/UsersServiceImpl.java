@@ -38,22 +38,30 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public void editPassword(ChangePasswordCommand command) {
-        repository.editPassword(command.getUsername(), command.getNewPassword());
+        User target = repository.findByUuid(command.getUuid());
+        if (target == null) {
+            throw new RuntimeException("Cannot find user");
+        }
+        if (!target.passwordMatches(command.getOldPassword(), passwordEncoder)) {
+            throw new RuntimeException("Wrong password");
+        }
+        String encodedPassword = passwordEncoder.encode(command.getNewPassword());
+        repository.editPassword(command.getUuid(), encodedPassword);
     }
 
     @Override
     public void editRoles(ChangeRolesCommand command) {
-        repository.editRoles(command.getUsername(), command.getNewRoles());
+        repository.editRoles(command.getUuid(), command.getNewRoles());
     }
 
     @Override
     public void enable(UserCommand command) {
-        repository.editEnabling(command.getUsername(), true);
+        repository.editEnabling(command.getUuid(), true);
     }
 
     @Override
     public void disable(UserCommand command) {
-        repository.editEnabling(command.getUsername(), false);
+        repository.editEnabling(command.getUuid(), false);
     }
 
     @Override
@@ -83,6 +91,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public void reset(UserCommand command) {
-        repository.editPassword(command.getUsername(), command.getUsername());
+        repository.editPassword(command.getUuid(), command.getUuid());
     }
 }

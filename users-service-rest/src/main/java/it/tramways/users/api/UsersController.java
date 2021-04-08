@@ -78,7 +78,7 @@ public class UsersController implements UsersApi {
     public ResponseEntity<Void> editPassword(String id,
         @Valid ChangePasswordRequest changePasswordRequest) {
         ChangePasswordCommand command = new ChangePasswordCommand();
-        command.setUsername(id);
+        command.setUuid(id);
         command.setOldPassword(changePasswordRequest.getOldPassword());
         command.setNewPassword(changePasswordRequest.getNewPassword());
         service.editPassword(command);
@@ -88,7 +88,7 @@ public class UsersController implements UsersApi {
     @Override
     public ResponseEntity<Void> editRoles(String id, @Valid List<UserRole> userRole) {
         ChangeRolesCommand command = new ChangeRolesCommand();
-        command.setUsername(id);
+        command.setUuid(id);
         command
             .setNewRoles(userRole.stream().map(RoleConverter::toModel).collect(Collectors.toSet()));
         service.editRoles(command);

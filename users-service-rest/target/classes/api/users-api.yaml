@@ -4,14 +4,14 @@ info:
   description: Tramways Users API
   version: 1.0.0
 servers:
-  - url: http://localhost:8762/tramways/rest/users-service
+  - url: http://localhost:8762/tramways/rest
 
 paths:
   /users:
     get:
       operationId: 'getUsers'
       summary: 'Gets all users'
-      tags: ['users']
+      tags: [ 'users' ]
       responses:
         '200':
           description: 'List of users'
@@ -24,7 +24,7 @@ paths:
     post:
       operationId: 'createUser'
       summary: 'Creates a new user'
-      tags: ['users']
+      tags: [ 'users' ]
       requestBody:
         content:
           application/json:
@@ -39,9 +39,10 @@ paths:
                 $ref: '#/components/schemas/User'
   /users/login:
     post:
-      summary: 'Logs a user in'
       operationId: 'login'
-      security: []
+      summary: 'Logs a user in'
+      tags: [ 'users' ]
+      security: [ ]
       requestBody:
         content:
           application/json:
@@ -56,8 +57,9 @@ paths:
                 $ref: '#/components/schemas/StringWrapper'
   /users/logged:
     get:
-      summary: 'Gets logged user'
       operationId: 'logged'
+      summary: 'Gets logged user'
+      tags: [ 'users' ]
       responses:
         '200':
           description: 'Ok'
@@ -69,7 +71,7 @@ paths:
     get:
       operationId: 'getUser'
       summary: 'Gets a user'
-      tags: ['users']
+      tags: [ 'users' ]
       parameters:
         - in: path
           name: 'id'
@@ -88,7 +90,7 @@ paths:
     delete:
       operationId: 'deleteUser'
       summary: 'Deletes a user'
-      tags: ['users']
+      tags: [ 'users' ]
       parameters:
         - in: path
           name: id
@@ -102,7 +104,7 @@ paths:
     put:
       operationId: 'editRoles'
       summary: 'Edit user''s roles'
-      tags: ['users']
+      tags: [ 'users' ]
       parameters:
         - in: path
           name: id
@@ -123,7 +125,7 @@ paths:
     put:
       operationId: 'editPassword'
       summary: 'Edit user''s password'
-      tags: ['users']
+      tags: [ 'users' ]
       parameters:
         - in: path
           name: id
@@ -142,7 +144,7 @@ paths:
     put:
       operationId: 'enableUser'
       summary: 'Enable or disable a user'
-      tags: ['users']
+      tags: [ 'users' ]
       parameters:
         - in: path
           name: id
@@ -161,7 +163,7 @@ paths:
     put:
       operationId: 'resetUser'
       summary: 'Reset user''s password'
-      tags: ['users']
+      tags: [ 'users' ]
       parameters:
         - in: path
           name: id
@@ -194,7 +196,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserRole'
-      required: [roles]
+      required: [ roles ]
     LoginRequest:
       type: object
       properties:
@@ -222,7 +224,7 @@ components:
             $ref: '#/components/schemas/UserRole'
     UserRole:
       type: string
-      enum: [CLIENT, EXPERT, ADMIN]
+      enum: [ CLIENT, EXPERT, ADMIN ]
     StringWrapper:
       type: object
       properties:
@@ -234,4 +236,4 @@ components:
         value:
           type: boolean
 security:
-  - bearerAuth: []
+  - bearerAuth: [ ]

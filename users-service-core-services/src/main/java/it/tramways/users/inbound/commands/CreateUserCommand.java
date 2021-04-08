@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class CreateUserCommand extends UserCommand {
 
+    private String username;
     private String password;
     private Set<Role> roles;
 
@@ -22,5 +23,13 @@ public class CreateUserCommand extends UserCommand {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

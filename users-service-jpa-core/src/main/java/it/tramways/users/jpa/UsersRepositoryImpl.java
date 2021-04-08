@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class UsersRepositoryImpl implements UsersRepository {
@@ -24,8 +25,12 @@ public class UsersRepositoryImpl implements UsersRepository {
 
     private final UsersJpaRepository delegate;
 
-    public UsersRepositoryImpl(EntityManager entityManager, UsersJpaRepository delegate,
-        UserMapper userMapper, RoleMapper roleMapper) {
+    public UsersRepositoryImpl(
+        EntityManager entityManager,
+        UsersJpaRepository delegate,
+        UserMapper userMapper,
+        RoleMapper roleMapper
+    ) {
         this.entityManager = entityManager;
         this.delegate = delegate;
         this.userMapper = userMapper;
@@ -49,22 +54,26 @@ public class UsersRepositoryImpl implements UsersRepository {
     }
 
     @Override
+    @Transactional
     public User createUser(User user) {
         UserEntity newUser = userMapper.map(user);
         return userMapper.map(delegate.save(newUser));
     }
 
     @Override
+    @Transactional
     public void deleteByUuid(String uuid) {
         delegate.findOne(withUuid(uuid)).ifPresent(delegate::delete);
     }
 
     @Override
+    @Transactional
     public void editPassword(String uuid, String newPassword) {
         delegate.findOne(withUuid(uuid)).ifPresent(entity -> entity.setPassword(newPassword));
     }
 
     @Override
+    @Transactional
     public void editRoles(String uuid, Set<Role> newRoles) {
         delegate.findOne(withUuid(uuid))
             .ifPresent(entity -> entity.setRoles(newRoles.stream().map(roleMapper::map).collect(
@@ -72,6 +81,7 @@ public class UsersRepositoryImpl implements UsersRepository {
     }
 
     @Override
+    @Transactional
     public void editEnabling(String uuid, boolean enabled) {
         delegate.findOne(withUuid(uuid)).ifPresent(entity -> entity.setEnabled(enabled));
     }

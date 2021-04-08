@@ -1,43 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <parent>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <groupId>org.springframework.boot</groupId>
-    <relativePath/>
-    <version>2.3.3.RELEASE</version>
-  </parent>
-
-  <modelVersion>4.0.0</modelVersion>
-
-
-  <groupId>it.tramways</groupId>
   <artifactId>users-service-rest</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-
-  <dependencies>
-    <dependency>
-      <groupId>it.tramways</groupId>
-      <artifactId>users-service-core-services</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>it.tramways</groupId>
-      <artifactId>users-service-core-model</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <artifactId>spring-boot-starter-data-rest</artifactId>
-      <groupId>org.springframework.boot</groupId>
-    </dependency>
-    <dependency>
-      <groupId>it.tramways</groupId>
-      <artifactId>tramways-commons-web</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
-  </dependencies>
 
   <build>
     <plugins>
@@ -45,19 +11,19 @@
         <artifactId>openapi-generator-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>users-api</id>
             <configuration>
+              <apiPackage>it.tramways.users.api</apiPackage>
               <configOptions>
                 <interfaceOnly>true</interfaceOnly>
               </configOptions>
-              <apiPackage>it.tramways.users.api</apiPackage>
-              <modelPackage>it.tramways.users.api.model</modelPackage>
               <generatorName>spring</generatorName>
               <inputSpec>${project.basedir}/src/main/resources/api/users-api.yaml</inputSpec>
+              <modelPackage>it.tramways.users.api.model</modelPackage>
             </configuration>
             <goals>
               <goal>generate</goal>
             </goals>
+            <id>users-api</id>
           </execution>
         </executions>
         <groupId>org.openapitools</groupId>
@@ -66,14 +32,53 @@
     </plugins>
   </build>
 
+
+  <dependencies>
+    <dependency>
+      <artifactId>users-service-core-services</artifactId>
+      <groupId>it.tramways</groupId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <artifactId>users-service-core-model</artifactId>
+      <groupId>it.tramways</groupId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-data-rest</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>tramways-commons-rest</artifactId>
+      <groupId>it.tramways</groupId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+  <groupId>it.tramways</groupId>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <relativePath/>
+    <version>2.3.3.RELEASE</version>
+  </parent>
+
   <properties>
-    <openapi.generator.maven.plugin.generateModelDocumentation>false</openapi.generator.maven.plugin.generateModelDocumentation>
-    <openapi.generator.maven.plugin.generateModelTests>false</openapi.generator.maven.plugin.generateModelTests>
-    <openapi.generator.maven.plugin.supportingFilesToGenerate>ApiUtil.java</openapi.generator.maven.plugin.supportingFilesToGenerate>
-    <openapi.generator.maven.plugin.generateApis>true</openapi.generator.maven.plugin.generateApis>
-    <openapi.generator.maven.plugin.generateApiTests>false</openapi.generator.maven.plugin.generateApiTests>
-    <openapi.generator.maven.plugin.generateApiDocumentation>false</openapi.generator.maven.plugin.generateApiDocumentation>
     <codegen.skipIfSpecIsUnchanged>false</codegen.skipIfSpecIsUnchanged>
+    <openapi.generator.maven.plugin.generateApiDocumentation>false
+    </openapi.generator.maven.plugin.generateApiDocumentation>
+    <openapi.generator.maven.plugin.generateApiTests>false
+    </openapi.generator.maven.plugin.generateApiTests>
+    <openapi.generator.maven.plugin.generateApis>true</openapi.generator.maven.plugin.generateApis>
+    <openapi.generator.maven.plugin.generateModelDocumentation>false
+    </openapi.generator.maven.plugin.generateModelDocumentation>
+    <openapi.generator.maven.plugin.generateModelTests>false
+    </openapi.generator.maven.plugin.generateModelTests>
+    <openapi.generator.maven.plugin.supportingFilesToGenerate>ApiUtil.java
+    </openapi.generator.maven.plugin.supportingFilesToGenerate>
   </properties>
+
+  <version>1.0.0-SNAPSHOT</version>
 
 </project>

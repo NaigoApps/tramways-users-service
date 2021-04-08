@@ -11,9 +11,9 @@ public interface UsersRepository {
 
     void deleteByUuid(String uuid);
 
-    void editPassword(String username, String newPassword);
+    void editPassword(String uuid, String newPassword);
 
-    void editRoles(String username, Set<Role> newRoles);
+    void editRoles(String uuid, Set<Role> newRoles);
 
     void editEnabling(String username, boolean b);
 
