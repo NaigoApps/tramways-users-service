@@ -1,2 +1,2 @@
-it/tramways/users/jpa/UsersRepositoryImpl.class
-it/tramways/users/jpa/UsersJpaRepository.class
+it\tramways\users\jpa\UsersJpaRepository.class
+it\tramways\users\jpa\UsersRepositoryImpl.class

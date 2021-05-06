@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * LoginRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-11T22:50:45.043892+01:00[Europe/Rome]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-08T23:12:29.339429100+02:00[Europe/Berlin]")
 public class LoginRequest   {
   @JsonProperty("username")
   private String username;
