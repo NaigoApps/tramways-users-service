@@ -19,7 +19,6 @@
       <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
       <groupId>org.springframework.cloud</groupId>
     </dependency>
-
     <dependency>
       <artifactId>users-service-rest</artifactId>
       <groupId>it.tramways</groupId>
