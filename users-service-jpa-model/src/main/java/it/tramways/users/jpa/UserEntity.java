@@ -1,6 +1,5 @@
 package it.tramways.users.jpa;
 
-import it.tramways.jpa.BaseEntity;
 import java.util.Set;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
