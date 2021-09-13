@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="CheckStyle-IDEA-Module">
+    <option name="configuration">
+      <map />
+    </option>
+  </component>
   <component name="FacetManager">
     <facet type="web" name="Web">
       <configuration>
@@ -205,7 +210,7 @@
     <orderEntry type="module" module-name="users-service-jpa-mappers" />
     <orderEntry type="library" name="Maven: org.mapstruct:mapstruct:1.4.2.Final" level="project" />
     <orderEntry type="module" module-name="users-service-jpa-model" />
-    <orderEntry type="module" module-name="tramways-commons-jpa" />
+    <orderEntry type="library" name="Maven: it.tramways:tramways-commons-jpa:1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-jpamodelgen:5.4.21.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:javax.activation-api:1.2.0" level="project" />
