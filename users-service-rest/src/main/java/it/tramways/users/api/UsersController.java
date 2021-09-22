@@ -3,13 +3,15 @@ package it.tramways.users.api;
 import it.tramways.commons.web.UserRoles;
 import it.tramways.commons.web.security.TokenManager;
 import it.tramways.commons.web.security.TramwaysUserDetails;
-import it.tramways.users.api.model.ChangePasswordRequest;
-import it.tramways.users.api.model.LoginRequest;
-import it.tramways.users.api.model.StringWrapper;
-import it.tramways.users.api.model.User;
-import it.tramways.users.api.model.UserRequest;
-import it.tramways.users.api.model.UserRole;
 import it.tramways.users.api.security.TramwaysUserDetailsService;
+import it.tramways.users.api.v1.UsersApi;
+import it.tramways.users.api.v1.model.BooleanWrapper;
+import it.tramways.users.api.v1.model.ChangePasswordRequest;
+import it.tramways.users.api.v1.model.LoginRequest;
+import it.tramways.users.api.v1.model.StringWrapper;
+import it.tramways.users.api.v1.model.User;
+import it.tramways.users.api.v1.model.UserRequest;
+import it.tramways.users.api.v1.model.UserRole;
 import it.tramways.users.inbound.UsersService;
 import it.tramways.users.inbound.commands.ChangePasswordCommand;
 import it.tramways.users.inbound.commands.ChangeRolesCommand;
@@ -96,6 +98,11 @@ public class UsersController implements UsersApi {
     }
 
     @Override
+    public ResponseEntity<Void> enableUser(String id, BooleanWrapper booleanWrapper) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
     public ResponseEntity<User> getUser(String id) {
         return ResponseEntity.ok(converter.toDto(service.findByUsername(id)));
     }
@@ -134,6 +141,11 @@ public class UsersController implements UsersApi {
         return ResponseEntity.ok()
             .header(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + token)
             .body(body);
+    }
+
+    @Override
+    public ResponseEntity<Void> resetUser(String id, StringWrapper stringWrapper) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
 }

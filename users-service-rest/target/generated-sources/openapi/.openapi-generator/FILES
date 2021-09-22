@@ -1,9 +1,0 @@
-src/main/java/it/tramways/users/api/ApiUtil.java
-src/main/java/it/tramways/users/api/UsersApi.java
-src/main/java/it/tramways/users/api/model/BooleanWrapper.java
-src/main/java/it/tramways/users/api/model/ChangePasswordRequest.java
-src/main/java/it/tramways/users/api/model/LoginRequest.java
-src/main/java/it/tramways/users/api/model/StringWrapper.java
-src/main/java/it/tramways/users/api/model/User.java
-src/main/java/it/tramways/users/api/model/UserRequest.java
-src/main/java/it/tramways/users/api/model/UserRole.java
