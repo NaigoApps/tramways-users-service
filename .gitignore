@@ -1,0 +1,8 @@
+/users-service-application/target/
+/users-service-core-model/target/
+/users-service-core-services/target/
+/users-service-jpa-core/target/
+/users-service-jpa-mappers/target/
+/users-service-jpa-model/target/
+/users-service-rest/target/
+/rest-api/v1/generated/spring/target/

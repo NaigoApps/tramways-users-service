@@ -1,6 +1,6 @@
-it/tramways/users/api/RoleConverter.class
-it/tramways/users/api/UserConverter.class
-it/tramways/users/api/UsersController.class
-it/tramways/users/api/security/TramwaysUserDetailsService.class
-it/tramways/users/api/security/UsersServiceWebSecurityConfigurerAdapter.class
-it/tramways/users/api/security/PasswordEncoderConfiguration.class
+it\tramways\users\api\UsersController.class
+it\tramways\users\api\security\UsersServiceWebSecurityConfigurerAdapter.class
+it\tramways\users\api\RoleConverter.class
+it\tramways\users\api\security\PasswordEncoderConfiguration.class
+it\tramways\users\api\security\TramwaysUserDetailsService.class
+it\tramways\users\api\UserConverter.class
