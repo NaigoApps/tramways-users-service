@@ -210,7 +210,7 @@
     <orderEntry type="module" module-name="users-service-jpa-mappers" />
     <orderEntry type="library" name="Maven: org.mapstruct:mapstruct:1.4.2.Final" level="project" />
     <orderEntry type="module" module-name="users-service-jpa-model" />
-    <orderEntry type="library" name="Maven: it.tramways:tramways-commons-jpa:1.0.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="tramways-commons-jpa" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-jpamodelgen:5.4.21.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.persistence:javax.persistence-api:2.2" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.21" level="project" />

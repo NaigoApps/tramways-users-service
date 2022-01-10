@@ -32,7 +32,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="users-service-jpa-model" />
-    <orderEntry type="library" name="Maven: it.tramways:tramways-commons-jpa:1.0.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="tramways-commons-jpa" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jpa:2.3.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.3.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:5.2.8.RELEASE" level="project" />

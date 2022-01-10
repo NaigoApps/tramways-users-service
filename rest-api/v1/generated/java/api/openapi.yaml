@@ -1,0 +1,303 @@
+openapi: 3.0.0
+info:
+  description: Tramways Users API
+  title: Tramways Users API
+  version: 1.0.0
+servers:
+- url: http://localhost:8762/tramways/rest
+security:
+- bearerAuth: []
+paths:
+  /users:
+    get:
+      operationId: getUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: List of users
+      summary: Gets all users
+      tags:
+      - users
+      x-accepts: application/json
+    post:
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Created
+      summary: Creates a new user
+      tags:
+      - users
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/login:
+    post:
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringWrapper'
+          description: Ok
+      security: []
+      summary: Logs a user in
+      tags:
+      - users
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/logged:
+    get:
+      operationId: logged
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Ok
+      summary: Gets logged user
+      tags:
+      - users
+      x-accepts: application/json
+  /users/{id}:
+    delete:
+      operationId: deleteUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      summary: Deletes a user
+      tags:
+      - users
+      x-accepts: application/json
+    get:
+      operationId: getUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: User
+        "404":
+          description: User not found
+      summary: Gets a user
+      tags:
+      - users
+      x-accepts: application/json
+  /users/{id}/roles:
+    put:
+      operationId: editRoles
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UserRole'
+              type: array
+      responses:
+        "200":
+          description: OK
+      summary: Edit user's roles
+      tags:
+      - users
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/{id}/password:
+    put:
+      operationId: editPassword
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+      responses:
+        "200":
+          description: OK
+      summary: Edit user's password
+      tags:
+      - users
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/{id}/enable:
+    put:
+      operationId: enableUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BooleanWrapper'
+      responses:
+        "200":
+          description: Ok
+      summary: Enable or disable a user
+      tags:
+      - users
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/{id}/reset:
+    put:
+      operationId: resetUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringWrapper'
+      responses:
+        "200":
+          description: OK
+      summary: Reset user's password
+      tags:
+      - users
+      x-contentType: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    UserRequest:
+      example:
+        password: password
+        roles:
+        - null
+        - null
+        username: username
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        roles:
+          items:
+            $ref: '#/components/schemas/UserRole'
+          type: array
+      required:
+      - roles
+      type: object
+    LoginRequest:
+      example:
+        password: password
+        username: username
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      type: object
+    ChangePasswordRequest:
+      example:
+        oldPassword: oldPassword
+        newPassword: newPassword
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      type: object
+    User:
+      example:
+        roles:
+        - null
+        - null
+        uuid: uuid
+        username: username
+      properties:
+        uuid:
+          type: string
+        username:
+          type: string
+        roles:
+          items:
+            $ref: '#/components/schemas/UserRole'
+          type: array
+      type: object
+    UserRole:
+      enum:
+      - CLIENT
+      - EXPERT
+      - ADMIN
+      type: string
+    StringWrapper:
+      example:
+        value: value
+      properties:
+        value:
+          type: string
+      type: object
+    BooleanWrapper:
+      example:
+        value: true
+      properties:
+        value:
+          type: boolean
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+
